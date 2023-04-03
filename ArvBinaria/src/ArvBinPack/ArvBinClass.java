@@ -7,7 +7,6 @@ public class ArvBinClass {
 		this.raiz = null;
 	}
 	
-	
 	public void insertNo(No no, No referencia ){
 		//No inicio no referencia precisa ser raiz
 		
@@ -31,22 +30,32 @@ public class ArvBinClass {
 		 * no tem 1 filho: o 1 filho subistitui o pai
 		*/
 		No achado = findNo(no, this.raiz);
-		//Corte as relações
+		// Corte as relações
 		if(achado.filhoDir == null && achado.filhoEsc == null){
-			// é maior ou menor que pai? Se menor Esq se maior Dir
-
-			
-		}
-
-
-		else if(achado.noPai.filhoEsc.varNo == achado.varNo){
-			// é filho esquerdo
-			achado.noPai.filhoEsc = null;
+			// Nó é folha
+			// É maior ou menor que pai? Se menor Esq se maior Dir
+			if(achado == achado.noPai.filhoEsc){
+				achado.noPai.filhoEsc = null;
+			}
+			else if(achado == achado.noPai.filhoDir){
+				achado.noPai.filhoDir = null;
+			}
 			achado.noPai = null;
-
-		} else if(achado.noPai.filhoDir.varNo == achado.varNo){
-			// é filho direito
 		}
+		// Tem um unico filho (é esquerdo ou direito? o nó a ser removido é um filho esq ou dir?)
+		else if(achado.noPai.filhoEsc == achado && achado.noPai.filhoDir == null){
+
+
+
+		// Filho Esq
+		}
+
+		
+
+
+
+
+
 		
 		
 		return achado;
