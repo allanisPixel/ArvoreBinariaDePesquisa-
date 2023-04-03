@@ -25,9 +25,21 @@ public class ArvBinClass {
 		}
 	}
 	public No popNo(No no){
+		/* Casos de remoção
+		 * Nó folha: remove as referencias e cabou
+		 * Nó tem 2 filhos: 1 pra direita e depois desce até o final pra esqueda e substitui
+		 * no tem 1 filho: o 1 filho subistitui o pai
+		*/
 		No achado = findNo(no, this.raiz);
 		//Corte as relações
-		if(achado.noPai.filhoEsc.varNo == achado.varNo){
+		if(achado.filhoDir == null && achado.filhoEsc == null){
+			// é maior ou menor que pai? Se menor Esq se maior Dir
+
+			
+		}
+
+
+		else if(achado.noPai.filhoEsc.varNo == achado.varNo){
 			// é filho esquerdo
 			achado.noPai.filhoEsc = null;
 			achado.noPai = null;
