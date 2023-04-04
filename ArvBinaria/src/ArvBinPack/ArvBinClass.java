@@ -43,20 +43,35 @@ public class ArvBinClass {
 			achado.noPai = null;
 		}
 		// Tem um unico filho (é esquerdo ou direito? o nó a ser removido é um filho esq ou dir?)
-		else if(achado.noPai.filhoEsc == achado && achado.noPai.filhoDir == null){
+		else if(achado.filhoDir == null && achado.filhoEsc != null || achado.filhoDir != null && achado.filhoEsc == null){
+			if(achado == achado.noPai.filhoEsc){
+				//Achado É filho Esq 
+				if(){}
+
+			}
+			else if(achado == achado.noPai.filhoDir){
+				//Achado É Filho Dir
+			}
+			achado.noPai = null;
+		}
+		
 
 
 
-		// Filho Esq
+
+
+		// Tem 2 filhos
+		if(achado.filhoDir != null && achado.filhoEsc != null){
+			
+
 		}
 
-		
 
 
 
 
 
-		
+
 		
 		return achado;
 	}
