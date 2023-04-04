@@ -46,13 +46,28 @@ public class ArvBinClass {
 		else if(achado.filhoDir == null && achado.filhoEsc != null || achado.filhoDir != null && achado.filhoEsc == null){
 			if(achado == achado.noPai.filhoEsc){
 				//Achado É filho Esq 
-				if(){}
+				if(achado.filhoEsc != null){
+					//Filho na esquerda
+
+				} else if(achado.filhoDir != null){
+					//Filho na direita
+
+				}
 
 			}
 			else if(achado == achado.noPai.filhoDir){
 				//Achado É Filho Dir
+				if(achado.filhoEsc != null){
+					//Filho na esquerda
+
+				} else if(achado.filhoDir != null){
+					//Filho na direita
+
+				}
+
+
 			}
-			achado.noPai = null;
+			
 		}
 		
 
@@ -62,7 +77,8 @@ public class ArvBinClass {
 
 		// Tem 2 filhos
 		if(achado.filhoDir != null && achado.filhoEsc != null){
-			
+			No substituto = achado.filhoDir; // desce um pra dir eo resto pra esc
+			No esse = descePraEsq(substituto);
 
 		}
 
@@ -71,9 +87,16 @@ public class ArvBinClass {
 
 
 
-
+		achado.noPai = null;
 		
 		return achado;
+	}
+	public No descePraEsq(No esse){
+		if (esse.filhoEsc != null){
+			esse = esse.filhoEsc;
+			descePraEsq(esse);
+		}
+		return esse;
 	}
 	
 	public No findNo(No no, No referencia){ 
