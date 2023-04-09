@@ -1,7 +1,10 @@
 package ArvBinPack;
 
+import java.util.ArrayList;
+
 public class ArvBinClass {
 	public No raiz;
+	public ArrayList ordem ;
 	
 	void ArvBinPack(){
 		this.raiz = null;
@@ -33,7 +36,7 @@ public class ArvBinClass {
 		// Corte as relações
 		if(achado.filhoDir == null && achado.filhoEsc == null){
 			// Nó é folha
-			// É maior ou menor que pai? Se menor Esq se maior Dir
+			// É maior ou menor que pai? Se menor Esq se maior DirV
 			if(achado == achado.noPai.filhoEsc){
 				achado.noPai.filhoEsc = null;
 			}
@@ -48,55 +51,74 @@ public class ArvBinClass {
 				//Achado É filho Esq 
 				if(achado.filhoEsc != null){
 					//Filho na esquerda
-
+					achado.filhoEsc.noPai = achado.noPai;
+					achado.noPai.filhoEsc = achado.filhoEsc;
+					achado.noPai = null;
+					achado.filhoEsc = null;
 				} else if(achado.filhoDir != null){
 					//Filho na direita
-
+					achado.filhoDir.noPai = achado.noPai;
+					achado.noPai.filhoEsc = achado.filhoDir;
+					achado.noPai = null;
+					achado.filhoDir = null;
 				}
-
 			}
 			else if(achado == achado.noPai.filhoDir){
 				//Achado É Filho Dir
 				if(achado.filhoEsc != null){
 					//Filho na esquerda
-
+					achado.filhoEsc.noPai = achado.noPai;
+					achado.noPai.filhoDir = achado.filhoEsc;
+					achado.noPai = null;
+					achado.filhoEsc = null;
 				} else if(achado.filhoDir != null){
 					//Filho na direita
-
+					achado.filhoDir.noPai = achado.noPai;
+					achado.noPai.filhoDir = achado.filhoDir;
+					achado.noPai = null;
+					achado.filhoDir = null;
 				}
-
-
 			}
-			
 		}
 		
-
-
-
-
-
 		// Tem 2 filhos
 		if(achado.filhoDir != null && achado.filhoEsc != null){
 			No substituto = achado.filhoDir; // desce um pra dir eo resto pra esc
-			No esse = descePraEsq(substituto);
+			// se substituto n tem filhos esquerdo vai ele mesmo
+			if(substituto.filhoEsc == null){
+				if(achado.noPai.filhoEsc == achado){
+					//achado é filho esquerdo
+					achado.noPai.filhoEsc = substituto;
+					substituto.noPai = achado.noPai;
+					achado.noPai = null;
+					achado.filhoDir = null;
 
+				}else{
+					//achado é filho direito
+					achado.noPai.filhoDir = substituto;
+					substituto.noPai = achado.noPai;
+					achado.noPai = null;
+					achado.filhoDir = null;
+				}
+			} else{
+				substituto = descePraEsq(substituto);
+				substituto.noPai.filhoEsc = null;
+				substituto.noPai = achado.noPai;
+				substituto.filhoEsc = achado.filhoEsc;
+				substituto.filhoDir = achado.filhoDir;
+				achado.filhoDir = null;
+				achado.filhoEsc = null;
+				achado.noPai = null;
+			}
 		}
-
-
-
-
-
-
-		achado.noPai = null;
-		
 		return achado;
 	}
-	public No descePraEsq(No esse){
-		if (esse.filhoEsc != null){
-			esse = esse.filhoEsc;
-			descePraEsq(esse);
+	public No descePraEsq(No substituto){
+		if (substituto.filhoEsc != null){
+			substituto = substituto.filhoEsc;
+			descePraEsq(substituto);
 		}
-		return esse;
+		return substituto;
 	}
 	
 	public No findNo(No no, No referencia){ 
@@ -121,7 +143,30 @@ public class ArvBinClass {
 		return referencia;
 	}
 	
-	
-	
-	
+	public void printArvore(){
+
+		emOrdem(raiz);
+		//Fatal altura
+		//Falta matriz
+		//Falta rotações
+		// Eu vou perguntar em aula como fizeram o print
+	}
+
+	public void emOrdem(No no){
+		/*
+		public void emordem(No no) {
+			if(no != null){
+			emordem(no.esquerda);
+			System.out.print(no.valor + " ");
+			emordem(no.direita);
+			}
+		}
+		*/
+
+		if(no != null){
+			emOrdem(no.filhoEsc);
+			this.ordem.add(no);
+			emOrdem(no.filhoDir);
+		}
+	}
 }
