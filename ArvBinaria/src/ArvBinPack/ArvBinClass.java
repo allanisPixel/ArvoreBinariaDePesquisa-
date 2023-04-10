@@ -1,5 +1,4 @@
 package ArvBinPack;
-
 import java.util.ArrayList;
 
 public class ArvBinClass {
@@ -10,7 +9,6 @@ public class ArvBinClass {
 	void ArvBinPack(){
 		this.raiz = null;
 	}
-	
 	public void insertNo(No no, No referencia ){
 		//No inicio no referencia precisa ser raiz
 		
@@ -147,11 +145,17 @@ public class ArvBinClass {
 	public void printArvore(){
 
 		emOrdem(raiz);
-		this.alturaDaArvore = altura(raiz);
+		this.alturaDaArvore = altura(this.raiz);
 		// Como que sabe a altura de cada nó?
 		// Sabendo isso eu sei como que insere
 		int matriz[][] = new int[this.alturaDaArvore][this.ordem.size()];
 
+		//tentando inserir na tabela
+		for(int i = 0; i < this.ordem.size(); i++){
+			No no = this.ordem.get(i);
+			//falta inserir
+
+		}
 
 		// Falta rotações
 		// Eu vou perguntar em aula como fizeram o print
@@ -172,13 +176,9 @@ public class ArvBinClass {
     {
         // caso base: árvore vazia tem altura 0
         if (raiz == null) {
-            return 0;
+            return -1;
         }
         // recorre para a subárvore esquerda e direita e considera a profundidade máxima
         return 1 + Math.max(altura(raiz.filhoEsc), altura(raiz.filhoDir));
     }
-
-
-
-
 }
