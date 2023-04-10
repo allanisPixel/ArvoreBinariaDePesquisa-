@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ArvBinClass {
 	public No raiz;
 	public ArrayList ordem ;
+	public int alturaDaArvore;
 	
 	void ArvBinPack(){
 		this.raiz = null;
@@ -146,27 +147,38 @@ public class ArvBinClass {
 	public void printArvore(){
 
 		emOrdem(raiz);
-		//Fatal altura
-		//Falta matriz
-		//Falta rotações
+		this.alturaDaArvore = altura(raiz);
+		// Como que sabe a altura de cada nó?
+		// Sabendo isso eu sei como que insere
+		int matriz[][] = new int[this.alturaDaArvore][this.ordem.size()];
+
+
+		// Falta rotações
 		// Eu vou perguntar em aula como fizeram o print
 	}
 
 	public void emOrdem(No no){
-		/*
-		public void emordem(No no) {
-			if(no != null){
-			emordem(no.esquerda);
-			System.out.print(no.valor + " ");
-			emordem(no.direita);
-			}
-		}
-		*/
-
 		if(no != null){
 			emOrdem(no.filhoEsc);
 			this.ordem.add(no);
 			emOrdem(no.filhoDir);
 		}
 	}
+
+	/*
+     Função para calcular a altura de uma árvore binária
+	*/
+	public int altura(No raiz)
+    {
+        // caso base: árvore vazia tem altura 0
+        if (raiz == null) {
+            return 0;
+        }
+        // recorre para a subárvore esquerda e direita e considera a profundidade máxima
+        return 1 + Math.max(altura(raiz.filhoEsc), altura(raiz.filhoDir));
+    }
+
+
+
+
 }
