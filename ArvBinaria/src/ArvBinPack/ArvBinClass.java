@@ -120,6 +120,7 @@ public class ArvBinClass {
 		return substituto;
 	}
 	
+	// Passe raiz e seu alvo
 	public No findNo(No no, No referencia){ 
 		//No referencia começa como raiz
 		if(referencia == null){ 
@@ -146,14 +147,15 @@ public class ArvBinClass {
 
 		emOrdem(raiz);
 		this.alturaDaArvore = altura(this.raiz);
-		// Como que sabe a altura de cada nó?
-		// Sabendo isso eu sei como que insere
+		//precisa saber o dep de cada nó
+		
 		int matriz[][] = new int[this.alturaDaArvore][this.ordem.size()];
 
 		//tentando inserir na tabela
 		for(int i = 0; i < this.ordem.size(); i++){
 			No no = this.ordem.get(i);
 			//falta inserir
+
 
 		}
 
@@ -172,8 +174,7 @@ public class ArvBinClass {
 	/*
      Função para calcular a altura de uma árvore binária
 	*/
-	public int altura(No raiz)
-    {
+	public int altura(No raiz){
         // caso base: árvore vazia tem altura 0
         if (raiz == null) {
             return -1;
@@ -181,4 +182,8 @@ public class ArvBinClass {
         // recorre para a subárvore esquerda e direita e considera a profundidade máxima
         return 1 + Math.max(altura(raiz.filhoEsc), altura(raiz.filhoDir));
     }
+	public int deepNo(No alvo){
+		esseNo = findNo(this.raiz, alvo)
+
+	}
 }
