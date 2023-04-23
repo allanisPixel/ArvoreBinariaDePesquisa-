@@ -183,7 +183,10 @@ public class ArvBinClass {
         return 1 + Math.max(altura(raiz.filhoEsc), altura(raiz.filhoDir));
     }
 	public int deepNo(No alvo){
-		esseNo = findNo(this.raiz, alvo)
+		No esseNo = findNo(this.raiz, alvo);
+		while (esseNo.noPai != null){
+			
+		}
 
 	}
 }
